@@ -5,20 +5,7 @@ import { AstroError } from "astro/errors";
 
 // Styles and CSS logic derived from https://daisyui.com/components/collapse/
 
-// These types are internal from Starlight and used to help with type checking
-// https://github.com/withastro/starlight/blob/0e4d04eaade69d6e5e35b1cec3d94063ee0c27ca/packages/starlight/utils/navigation.ts#L20-L37
-
 // This Sidebar override uses the top-level items from the Starlight sidebar config to create sidebars.
-
-interface Link {
-  type: "link";
-  isCurrent: boolean;
-}
-interface Group {
-  type: "group";
-  entries: (Link | Group)[];
-}
-type SidebarEntry = Link | Group;
 
 // Go through each top-level sidebar item from the Astro config to...
 // 1. Validate the config is set up correctly
@@ -37,7 +24,9 @@ const multiSidebarConfig: [string, boolean, Props][] = Astro.props.sidebar.map(
     }
 
     // Recursively check if a group of sidebar entries contains the current page
-    const findIfIsCurrent = (entry: SidebarEntry): boolean => {
+    const findIfIsCurrent = (
+      entry: (typeof Astro.props.sidebar)[number]
+    ): boolean => {
       if (entry.type === "link") {
         return entry.isCurrent;
       }
