@@ -20,21 +20,11 @@ interface Group {
 }
 type SidebarEntry = Link | Group;
 
-// Recursively check if a group of sidebar entries contains the current page
-const findIfIsCurrent = (entry: SidebarEntry): boolean => {
-  if (entry.type === "link") {
-    return entry.isCurrent;
-  }
-  return entry.entries.some((item) => findIfIsCurrent(item));
-};
-
-let isCurrentPage = false;
-
 // Go through each top-level sidebar item from the Astro config to...
 // 1. Validate the config is set up correctly
 // 2. Create a new derived set of `Astro.props` that only contains one set of sidebar entries
 // 3. Check if the current page being rendered is current page to determine if this sidebar group should be selected
-const multiSidebarConfig: [string, Props][] = Astro.props.sidebar.map(
+const multiSidebarConfig: [string, boolean, Props][] = Astro.props.sidebar.map(
   (entry) => {
     if (entry.type !== "group") {
       throw new AstroError(
@@ -46,16 +36,28 @@ const multiSidebarConfig: [string, Props][] = Astro.props.sidebar.map(
       );
     }
 
-    isCurrentPage = findIfIsCurrent(entry);
+    // Recursively check if a group of sidebar entries contains the current page
+    const findIfIsCurrent = (entry: SidebarEntry): boolean => {
+      if (entry.type === "link") {
+        return entry.isCurrent;
+      }
+      return entry.entries.some((item) => findIfIsCurrent(item));
+    };
 
-    return [entry.label, { ...Astro.props, sidebar: [...entry.entries] }];
+    const isCurrentPage = findIfIsCurrent(entry);
+
+    return [
+      entry.label,
+      isCurrentPage,
+      { ...Astro.props, sidebar: [...entry.entries] },
+    ];
   }
 );
 ---
 
 <div class="__collapse">
   {
-    multiSidebarConfig.map(([label, config]) => (
+    multiSidebarConfig.map(([label, isCurrentPage, config]) => (
       <>
         <input
           type="radio"
