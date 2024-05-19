@@ -6,7 +6,6 @@
   "description": "Use multiple sidebars with your Starlight site.",
   "type": "module",
   "exports": {
-    ".": "./index.ts",
     "./overrides/Sidebar.astro": "./overrides/Sidebar.astro"
   },
   "scripts": {
