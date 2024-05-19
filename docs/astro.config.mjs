@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import starlightMultiSidebar from "starlight-multi-sidebar";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,9 +23,7 @@ export default defineConfig({
           autogenerate: { directory: "reference" },
         },
       ],
-      components: {
-        Sidebar: "starlight-multi-sidebar/overrides/Sidebar.astro",
-      },
+      plugins: [starlightMultiSidebar],
     }),
   ],
 });
