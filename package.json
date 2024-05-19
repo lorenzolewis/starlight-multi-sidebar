@@ -5,6 +5,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "dev": "pnpm --filter docs dev",
     "version": "pnpm changeset version && pnpm i --no-frozen-lockfile"
   },
   "dependencies": {
