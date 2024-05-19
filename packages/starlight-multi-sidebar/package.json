@@ -17,10 +17,10 @@
     "astro": "^4.3.5"
   },
   "peerDependencies": {
-    "@astrojs/starlight": ">=0.23.1",
-    "astro": ">=4.3.5"
+    "@astrojs/starlight": ">=0.16.0",
+    "astro": ">=4.0.0"
   },
-  "homepage": "https://github.com/lorenzolewis/starlight-multi-sidebar",
+  "homepage": "https://starlight-multi-sidebar.pages.dev",
   "repository": {
     "type": "git",
     "url": "https://github.com/lorenzolewis/starlight-multi-sidebar.git",
