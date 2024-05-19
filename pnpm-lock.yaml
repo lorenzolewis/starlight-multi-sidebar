@@ -35,6 +35,9 @@ importers:
       sharp:
         specifier: ^0.32.5
         version: 0.32.6
+      starlight-package-managers:
+        specifier: ^0.5.0
+        version: 0.5.0(@astrojs/starlight@0.23.1(astro@4.8.6(typescript@5.4.5)))(astro@4.8.6(typescript@5.4.5))
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -2756,6 +2759,13 @@ packages:
 
   sprintf-js@1.0.3:
     resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
+
+  starlight-package-managers@0.5.0:
+    resolution: {integrity: sha512-Jbt5lsIx5UKbzADKVY0YS+oZSHsSnJiUhvnsAxCw1dT8ygE4XJlupNykpRT0vsadHivFfUPZAlKOaPk1d6cFww==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      '@astrojs/starlight': '>=0.22.0'
+      astro: '>=4.2.7'
 
   stdin-discarder@0.2.2:
     resolution: {integrity: sha512-UhDfHmA92YAlNnCfhmq0VeNL5bDbiZGg7sZ2IvPsXubGkiNa9EC+tUTsjBRsYUAz87btI6/1wf4XoVvQ3uRnmQ==}
@@ -6815,6 +6825,11 @@ snapshots:
   spdx-license-ids@3.0.17: {}
 
   sprintf-js@1.0.3: {}
+
+  starlight-package-managers@0.5.0(@astrojs/starlight@0.23.1(astro@4.8.6(typescript@5.4.5)))(astro@4.8.6(typescript@5.4.5)):
+    dependencies:
+      '@astrojs/starlight': 0.23.1(astro@4.8.6(typescript@5.4.5))
+      astro: 4.8.6(typescript@5.4.5)
 
   stdin-discarder@0.2.2: {}
 

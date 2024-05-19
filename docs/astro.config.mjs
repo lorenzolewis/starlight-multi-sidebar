@@ -6,17 +6,14 @@ import starlightMultiSidebar from "@lorenzo_lewis/starlight-multi-sidebar";
 export default defineConfig({
   integrations: [
     starlight({
-      title: "My Docs",
+      title: "Starlight Multi-Sidebar",
       social: {
-        github: "https://github.com/withastro/starlight",
+        github: "https://github.com/lorenzolewis/starlight-multi-sidebar",
       },
       sidebar: [
         {
           label: "Guides",
-          items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", link: "/guides/example/" },
-          ],
+          autogenerate: { directory: "guides" },
         },
         {
           label: "Reference",
