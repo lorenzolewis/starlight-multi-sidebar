@@ -1,3 +1,1 @@
-# Starlight Multi-Sidebar
-
-Have multiple sidebars in your Starlight site!
+./packages/starlight-multi-sidebar/README.md

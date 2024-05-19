@@ -1,0 +1,23 @@
+{
+  "name": "starlight-multi-sidebar",
+  "author": "Lorenzo Lewis",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Use multiple sidebars with your Starlight site.",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./overrides/Sidebar.astro": "./overrides/Sidebar.astro"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@astrojs/starlight": "^0.23.1",
+    "astro": "^4.3.5"
+  },
+  "peerDependencies": {
+    "@astrojs/starlight": ">=0.23.1",
+    "astro": ">=4.3.5"
+  }
+}
