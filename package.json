@@ -10,7 +10,7 @@
   "dependencies": {
     "@changesets/cli": "^2.27.2",
     "typescript": "^5.4.5",
-    "astro": "^4.3.5"
+    "astro": "^4.8.6"
   },
   "packageManager": "pnpm@9.1.1"
 }
