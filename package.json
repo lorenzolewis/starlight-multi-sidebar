@@ -4,7 +4,9 @@
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "version": "pnpm changeset version && pnpm i --no-frozen-lockfile"
+  },
   "dependencies": {
     "@changesets/cli": "^2.27.2",
     "typescript": "^5.4.5",
