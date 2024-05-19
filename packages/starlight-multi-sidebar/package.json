@@ -23,7 +23,8 @@
   "homepage": "https://github.com/lorenzolewis/starlight-multi-sidebar",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lorenzolewis/starlight-multi-sidebar.git"
+    "url": "https://github.com/lorenzolewis/starlight-multi-sidebar.git",
+    "directory": "packages/starlight-multi-sidebar"
   },
   "bugs": "https://github.com/lorenzolewis/starlight-multi-sidebar/issues"
 }
