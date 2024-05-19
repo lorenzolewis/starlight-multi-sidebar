@@ -6,7 +6,7 @@ import starlightMultiSidebar from "@lorenzo_lewis/starlight-multi-sidebar";
 export default defineConfig({
   integrations: [
     starlight({
-      title: "🏗️ Starlight Multi-Sidebar",
+      title: "🗃️ Starlight Multi-Sidebar",
       social: {
         github: "https://github.com/lorenzolewis/starlight-multi-sidebar",
       },
