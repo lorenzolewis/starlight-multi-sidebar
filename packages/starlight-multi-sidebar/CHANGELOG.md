@@ -1,5 +1,11 @@
 # @lorenzo_lewis/starlight-multi-sidebar
 
+## 0.0.3
+
+### Patch Changes
+
+- 4b8fa2d: Update meta information
+
 ## 0.0.2
 
 ### Patch Changes
