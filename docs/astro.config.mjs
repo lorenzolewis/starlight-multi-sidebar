@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import starlightMultiSidebar from "starlight-multi-sidebar";
+import starlightMultiSidebar from "@lorenzo_lewis/starlight-multi-sidebar";
 
 // https://astro.build/config
 export default defineConfig({

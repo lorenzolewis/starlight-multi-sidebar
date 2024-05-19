@@ -7,7 +7,8 @@ const plugin: StarlightPlugin = {
       updateConfig({
         components: {
           ...config.components,
-          Sidebar: "starlight-multi-sidebar/overrides/Sidebar.astro",
+          Sidebar:
+            "@lorenzo_lewis/starlight-multi-sidebar/overrides/Sidebar.astro",
         },
       });
     },
