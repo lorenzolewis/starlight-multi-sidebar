@@ -2,6 +2,7 @@
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/Sidebar.astro";
 import { AstroError } from "astro/errors";
+import {Tabs, TabItem} from "@astrojs/starlight/components"
 
 // Styles and CSS logic derived from https://daisyui.com/components/collapse/
 
@@ -50,66 +51,26 @@ if (
 }
 ---
 
-<div class="__collapse">
+<Tabs>
   {
     multiSidebarConfig.map(([label, isCurrentPage, config]) => (
-      <>
-        <input
-          type="radio"
-          name="sidebar"
-          role="tab"
-          aria-label={label}
-          checked={isCurrentPage}
-        />
-        <div class="__collapse-content">
+      <TabItem {label}>
+        <>
           <Default {...config}>
             <slot />
           </Default>
-        </div>
-      </>
+        </>
+      </TabItem>
     ))
   }
-</div>
-<style>
-  .__collapse {
-    display: grid;
-  }
-  .__collapse > input {
-    /* Layout */
-    position: relative;
-    display: inline-flex;
-    grid-row-start: 1;
-    appearance: none;
-    width: 100%;
-    min-height: fit-content;
+</Tabs>
 
-    /* Styles */
-    border-radius: 0.25rem;
-    padding: 0.2em 0.5rem;
-    line-height: 1.4;
-    font-size: var(--sl-text-lg);
-    font-weight: 600;
-    cursor: pointer;
-    user-select: none;
-    margin-bottom: var(--sl-nav-pad-y);
-  }
+<style is:global>
+  	.tab > [role='tab'] {
+    padding-inline: var(--sl-nav-pad-y);
+    }
 
-  .__collapse > input::after {
-    content: attr(aria-label);
-  }
-
-  .__collapse > input:checked {
-    color: var(--sl-color-text-invert);
-    background-color: var(--sl-color-text-accent);
-  }
-
-  .__collapse > .__collapse-content {
-    display: none;
-    grid-column-start: 1;
-    grid-column-end: span 999;
-    grid-row-start: 2;
-  }
-  .__collapse > input:checked + .__collapse-content {
-    display: block;
+  .tab > [role='tab'] {
+    white-space: nowrap;
   }
 </style>
