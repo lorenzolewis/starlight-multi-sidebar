@@ -8,7 +8,7 @@ export default defineConfig({
   site: "https://starlight-multi-sidebar.pages.dev",
   integrations: [
     starlight({
-      title: "🗃️ Starlight Multi-Sidebar",
+      title: "🗄️ Starlight Multi-Sidebar",
       social: {
         github: "https://github.com/lorenzolewis/starlight-multi-sidebar",
       },
