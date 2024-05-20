@@ -2,6 +2,7 @@
 import type { Props as StarlightProps } from "@astrojs/starlight/props";
 import { Icon } from "@astrojs/starlight/components";
 import type { SidebarData } from "../overrides/Sidebar.astro";
+import Default from "@astrojs/starlight/components/Sidebar.astro";
 
 interface Props {
   starlightProps: StarlightProps;
@@ -23,7 +24,18 @@ interface Props {
     </select>
     <Icon name="down-caret" class="icon" />
   </label>
-  <slot />
+  {
+    Astro.props.multiSidebarData.map(({ label, isCurrentSidebar, sidebar }) => (
+      <div
+        hidden={!isCurrentSidebar}
+        data-starlight-multi-sidebar-label={label}
+      >
+        <Default {...sidebar}>
+          <slot />
+        </Default>
+      </div>
+    ))
+  }
 </starlight-multi-sidebar-select>
 
 <script>
@@ -71,7 +83,7 @@ interface Props {
   }
 
   label:hover > select {
-    border-color: var(--sl-color-gray-2);
+    border-color: var(--sl-color-gray-5);
   }
 
   .icon {
@@ -84,8 +96,9 @@ interface Props {
   }
 
   select {
+    background-color: var(--sl-color-bg-nav);
     box-shadow: var(--sl-shadow-sm);
-    border: 1px solid var(--sl-color-gray-5);
+    border: 1px solid var(--sl-color-hairline-light);
     padding-block: 0.3rem;
     margin-bottom: 0.625rem;
     padding-inline: 0.5rem calc(var(--sl-caret-size) + 0.5rem);

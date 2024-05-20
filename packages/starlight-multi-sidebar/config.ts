@@ -2,9 +2,9 @@ import { AstroError } from "astro/errors";
 import { z } from "astro/zod";
 
 export const configSchema = z
-  .object({ switcherStyle: z.enum(["dropdown", "horizontalList"]) })
+  .object({ switcherStyle: z.enum(["dropdown", "horizontalScrollList"]) })
   .optional()
-  .default({ switcherStyle: "horizontalList" });
+  .default({ switcherStyle: "horizontalScrollList" });
 
 export function validateConfig(
   userConfig: unknown

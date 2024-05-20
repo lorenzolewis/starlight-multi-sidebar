@@ -1,0 +1,74 @@
+---
+import type { Props as StarlightProps } from "@astrojs/starlight/props";
+import type { SidebarData } from '../overrides/Sidebar.astro';
+import Default from "@astrojs/starlight/components/Sidebar.astro";
+
+interface Props {
+  starlightProps: StarlightProps;
+  multiSidebarData: SidebarData[];
+}
+---
+
+<div class="__collapse">
+    {
+      Astro.props.multiSidebarData.map(({label, isCurrentSidebar, sidebar}) => (
+        <>
+          <input
+            type="radio"
+            name="sidebar"
+            role="tab"
+            aria-label={label}
+            checked={isCurrentSidebar}
+          />
+          <div class="__collapse-content">
+            <Default {...sidebar}>
+              <slot />
+            </Default>
+          </div>
+        </>
+      ))
+    }
+</div>
+<style>
+.__collapse {
+    display: grid;
+}
+.__collapse > input {
+    /* Layout */
+    position: relative;
+    display: inline-flex;
+    grid-row-start: 1;
+    appearance: none;
+    width: 100%;
+    min-height: fit-content;
+
+    /* Styles */
+    border-radius: 0.25rem;
+    padding: 0.2em 0.5rem;
+    line-height: 1.4;
+    font-size: var(--sl-text-lg);
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    margin-bottom: var(--sl-nav-pad-y);
+}
+
+.__collapse > input::after {
+    content: attr(aria-label);
+}
+
+.__collapse > input:checked {
+    color: var(--sl-color-text-invert);
+    background-color: var(--sl-color-text-accent);
+}
+
+.__collapse > .__collapse-content {
+    display: none;
+    grid-column-start: 1;
+    grid-column-end: span 999;
+    grid-row-start: 2;
+}
+.__collapse > input:checked + .__collapse-content {
+    display: block;
+}
+</style>

@@ -19,24 +19,8 @@ export default defineConfig({
           label: "Reference",
           autogenerate: { directory: "reference" },
         },
-        {
-          label: "Entry 3",
-          items: [],
-        },
-        {
-          label: "Entry 4",
-          items: [],
-        },
-        {
-          label: "Entry 5",
-          items: [],
-        },
-        {
-          label: "Entry 6",
-          items: [],
-        },
       ],
-      plugins: [starlightMultiSidebar({ switcherStyle: "horizontalList" })],
+      plugins: [starlightMultiSidebar({ switcherStyle: "dropdown" })],
     }),
   ],
 });

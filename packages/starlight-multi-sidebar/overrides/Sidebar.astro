@@ -1,10 +1,10 @@
 ---
 import type { Props } from "@astrojs/starlight/props";
-import Default from "@astrojs/starlight/components/Sidebar.astro";
 import { AstroError } from "astro/errors";
 import Dropdown from "../components/Dropdown.astro";
 // @ts-expect-error Can't dynamically define this
 import config from "virtual:starlight-multi-sidebar/config";
+import HorizontalScrollList from "../components/HorizontalScrollList.astro";
 
 export type SidebarData = {
   label: string;
@@ -58,19 +58,8 @@ if (!multiSidebarConfig.some(({ isCurrentSidebar }) => isCurrentSidebar)) {
 ---
 
 {config.switcherStyle == "dropdown" &&
-  <Dropdown starlightProps={Astro.props} multiSidebarData={multiSidebarConfig}>
-    {
-      multiSidebarConfig.map(({ label, isCurrentSidebar, sidebar }) => (
-        <div
-          hidden={!isCurrentSidebar}
-          data-starlight-multi-sidebar-label={label}
-        >
-          <Default {...sidebar}>
-            <slot />
-          </Default>
-        </div>
-      ))
-    }
-</Dropdown>
+  <Dropdown starlightProps={Astro.props} multiSidebarData={multiSidebarConfig} />
 }
-{config.switcherStyle == "horizontalList" && <div>Horizontal List </div>}
+{config.switcherStyle == "horizontalScrollList" &&
+  <HorizontalScrollList starlightProps={Astro.props} multiSidebarData={multiSidebarConfig}/>
+}
