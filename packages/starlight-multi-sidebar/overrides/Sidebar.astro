@@ -63,7 +63,7 @@ if (
         ))
       }
     </select>
-    <Icon name="down-caret" class="icon caret" />
+    <Icon name="down-caret" class="icon" />
   </label>
   {
     multiSidebarConfig.map(([label, isCurrentPage, config]) => (
@@ -108,7 +108,6 @@ if (
 </script>
 <style>
   label {
-    --sl-label-icon-size: 0.875rem;
     --sl-caret-size: 1.25rem;
     position: relative;
     display: flex;
@@ -123,27 +122,19 @@ if (
 
   .icon {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 0;
+    transform: translateY(50%);
     pointer-events: none;
-  }
-
-  .label-icon {
-    font-size: var(--sl-label-icon-size);
-    inset-inline-start: 0;
-  }
-
-  .caret {
     font-size: var(--sl-caret-size);
-    inset-inline-end: 0;
+    inset-inline-end: 0.5rem;
   }
   select {
-    border: 0;
-    padding-block: 0.625rem;
-    padding-inline: calc(var(--sl-label-icon-size) + 0.25rem)
-      calc(var(--sl-caret-size) + 0.25rem);
-    width: var(--sl-sidebar-width);
-    background-color: transparent;
+    box-shadow: var(--sl-shadow-sm);
+    border: 1px solid var(--sl-color-gray-5);
+    padding-block: 0.3rem;
+    margin-bottom: 0.625rem;
+    padding-inline: 0.5rem calc(var(--sl-caret-size) + 0.5rem);
+    width: 100%;
     text-overflow: ellipsis;
     color: inherit;
     cursor: pointer;
