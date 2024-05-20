@@ -26,5 +26,8 @@
     "url": "https://github.com/lorenzolewis/starlight-multi-sidebar.git",
     "directory": "packages/starlight-multi-sidebar"
   },
-  "bugs": "https://github.com/lorenzolewis/starlight-multi-sidebar/issues"
+  "bugs": "https://github.com/lorenzolewis/starlight-multi-sidebar/issues",
+  "dependencies": {
+    "astro-integration-kit": "^0.13.3"
+  }
 }

@@ -21,22 +21,22 @@ export default defineConfig({
         },
         {
           label: "Entry 3",
-          items: []
+          items: [],
         },
         {
           label: "Entry 4",
-          items: []
+          items: [],
         },
         {
           label: "Entry 5",
-          items: []
+          items: [],
         },
         {
           label: "Entry 6",
-          items: []
+          items: [],
         },
       ],
-      plugins: [starlightMultiSidebar],
+      plugins: [starlightMultiSidebar({ switcherStyle: "dropdown" })],
     }),
   ],
 });

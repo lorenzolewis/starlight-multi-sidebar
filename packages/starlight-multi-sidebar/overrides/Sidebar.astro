@@ -3,12 +3,15 @@ import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/Sidebar.astro";
 import { AstroError } from "astro/errors";
 import Dropdown from "../components/Dropdown.astro";
+import config from "virtual:starlight-multi-sidebar/config";
 
 export type SidebarData = {
   label: string;
   isCurrentSidebar: boolean;
   sidebar: Props;
 };
+
+console.log(config.switcherStyle)
 
 // Styles and CSS logic derived from https://daisyui.com/components/collapse/
 
