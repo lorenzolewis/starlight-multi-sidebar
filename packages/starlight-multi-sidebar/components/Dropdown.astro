@@ -60,19 +60,21 @@ interface Props {
   class StarlightMultiSidebarSelect extends HTMLElement {
     constructor() {
       super();
-      const dataLabelName = "starlight-multi-sidebar-label";
       const select = this.querySelector("select");
       if (select) {
         select.addEventListener("change", (e) => {
           if (e.currentTarget instanceof HTMLSelectElement) {
             const sidebarEntries = this.querySelectorAll(
-              `[data-${dataLabelName}]`
+              `[data-starlight-multi-sidebar-label]`
             );
             sidebarEntries.forEach((entry) => {
               if (entry instanceof HTMLDivElement) {
-                entry.hidden = true;
-                if (entry.dataset[dataLabelName] === select.value) {
+                if (
+                  entry.dataset["starlightMultiSidebarLabel"] === select.value
+                ) {
                   entry.hidden = false;
+                } else {
+                  entry.hidden = true;
                 }
               }
             });
