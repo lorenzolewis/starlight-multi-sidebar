@@ -120,6 +120,10 @@ if (
     color: var(--sl-color-gray-2);
   }
 
+  label:hover > select {
+    border-color: var(--sl-color-gray-2);
+  }
+
   .icon {
     position: absolute;
     top: 0;
@@ -128,6 +132,7 @@ if (
     font-size: var(--sl-caret-size);
     inset-inline-end: 0.5rem;
   }
+
   select {
     box-shadow: var(--sl-shadow-sm);
     border: 1px solid var(--sl-color-gray-5);
@@ -143,11 +148,5 @@ if (
   option {
     background-color: var(--sl-color-bg-nav);
     color: var(--sl-color-gray-1);
-  }
-
-  @media (min-width: 50rem) {
-    select {
-      font-size: var(--sl-text-sm);
-    }
   }
 </style>
