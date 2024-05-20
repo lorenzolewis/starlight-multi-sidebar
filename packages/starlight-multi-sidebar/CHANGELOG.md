@@ -1,5 +1,13 @@
 # @lorenzo_lewis/starlight-multi-sidebar
 
+## 0.1.3
+
+### Patch Changes
+
+- 668249b: Refactor horizontal tab styles.
+
+  If you are familiar with Astro docs prior to the Starlight migration this may look familiar 😉
+
 ## 0.1.2
 
 ### Patch Changes
