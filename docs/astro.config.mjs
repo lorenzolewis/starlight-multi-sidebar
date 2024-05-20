@@ -20,7 +20,7 @@ export default defineConfig({
           autogenerate: { directory: "reference" },
         },
       ],
-      plugins: [starlightMultiSidebar],
+      plugins: [starlightMultiSidebar()],
     }),
   ],
 });
