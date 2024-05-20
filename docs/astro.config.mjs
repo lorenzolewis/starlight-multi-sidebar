@@ -19,6 +19,22 @@ export default defineConfig({
           label: "Reference",
           autogenerate: { directory: "reference" },
         },
+        {
+          label: "Entry 3",
+          autogenerate: { directory: "reference" },
+        },
+        {
+          label: "Entry 4",
+          autogenerate: { directory: "reference" },
+        },
+        {
+          label: "Entry 5",
+          autogenerate: { directory: "reference" },
+        },
+        {
+          label: "Entry 6",
+          autogenerate: { directory: "reference" },
+        },
       ],
       plugins: [starlightMultiSidebar],
     }),

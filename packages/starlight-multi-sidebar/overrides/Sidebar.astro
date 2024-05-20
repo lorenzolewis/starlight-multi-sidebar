@@ -2,6 +2,7 @@
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/Sidebar.astro";
 import { AstroError } from "astro/errors";
+import { Icon } from "@astrojs/starlight/components";
 
 // Styles and CSS logic derived from https://daisyui.com/components/collapse/
 
@@ -50,66 +51,112 @@ if (
 }
 ---
 
-<div class="__collapse">
+<starlight-multi-sidebar-select>
+  <label>
+    <span class="sr-only">
+      {Astro.props.labels["menuButton.accessibleLabel"]}
+    </span>
+    <select>
+      {
+        multiSidebarConfig.map(([label, isCurrentPage]) => (
+          <option value={label} selected={isCurrentPage} set:html={label} />
+        ))
+      }
+    </select>
+    <Icon name="down-caret" class="icon caret" />
+  </label>
   {
     multiSidebarConfig.map(([label, isCurrentPage, config]) => (
-      <>
-        <input
-          type="radio"
-          name="sidebar"
-          role="tab"
-          aria-label={label}
-          checked={isCurrentPage}
-        />
-        <div class="__collapse-content">
-          <Default {...config}>
-            <slot />
-          </Default>
-        </div>
-      </>
+      <div hidden={!isCurrentPage} data-starlight-multi-sidebar-label={label}>
+        <Default {...config}>
+          <slot />
+        </Default>
+      </div>
     ))
   }
-</div>
+</starlight-multi-sidebar-select>
+
+<script>
+  class StarlightMultiSidebarSelect extends HTMLElement {
+    constructor() {
+      super();
+      const dataLabelName = "starlight-multi-sidebar-label";
+      const select = this.querySelector("select");
+      if (select) {
+        select.addEventListener("change", (e) => {
+          if (e.currentTarget instanceof HTMLSelectElement) {
+            const sidebarEntries = this.querySelectorAll(
+              `[data-${dataLabelName}]`
+            );
+            sidebarEntries.forEach((entry) => {
+              if (entry instanceof HTMLDivElement) {
+                entry.hidden = true;
+                if (entry.dataset[dataLabelName] === select.value) {
+                  entry.hidden = false;
+                }
+              }
+            });
+          }
+        });
+      }
+    }
+  }
+  customElements.define(
+    "starlight-multi-sidebar-select",
+    StarlightMultiSidebarSelect
+  );
+</script>
 <style>
-  .__collapse {
-    display: grid;
-  }
-  .__collapse > input {
-    /* Layout */
+  label {
+    --sl-label-icon-size: 0.875rem;
+    --sl-caret-size: 1.25rem;
     position: relative;
-    display: inline-flex;
-    grid-row-start: 1;
-    appearance: none;
-    width: 100%;
-    min-height: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--sl-color-gray-1);
+  }
 
-    /* Styles */
-    border-radius: 0.25rem;
-    padding: 0.2em 0.5rem;
-    line-height: 1.4;
-    font-size: var(--sl-text-lg);
-    font-weight: 600;
+  label:hover {
+    color: var(--sl-color-gray-2);
+  }
+
+  .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .label-icon {
+    font-size: var(--sl-label-icon-size);
+    inset-inline-start: 0;
+  }
+
+  .caret {
+    font-size: var(--sl-caret-size);
+    inset-inline-end: 0;
+  }
+  select {
+    border: 0;
+    padding-block: 0.625rem;
+    padding-inline: calc(var(--sl-label-icon-size) + 0.25rem)
+      calc(var(--sl-caret-size) + 0.25rem);
+    width: var(--sl-sidebar-width);
+    background-color: transparent;
+    text-overflow: ellipsis;
+    color: inherit;
     cursor: pointer;
-    user-select: none;
-    margin-bottom: var(--sl-nav-pad-y);
+    appearance: none;
+  }
+  option {
+    background-color: var(--sl-color-bg-nav);
+    color: var(--sl-color-gray-1);
   }
 
-  .__collapse > input::after {
-    content: attr(aria-label);
-  }
-
-  .__collapse > input:checked {
-    color: var(--sl-color-text-invert);
-    background-color: var(--sl-color-text-accent);
-  }
-
-  .__collapse > .__collapse-content {
-    display: none;
-    grid-column-start: 1;
-    grid-column-end: span 999;
-    grid-row-start: 2;
-  }
-  .__collapse > input:checked + .__collapse-content {
-    display: block;
+  @media (min-width: 50rem) {
+    select {
+      font-size: var(--sl-text-sm);
+    }
   }
 </style>
