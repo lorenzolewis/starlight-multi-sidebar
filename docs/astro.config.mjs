@@ -1,6 +1,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import starlightMultiSidebar from "@lorenzo_lewis/starlight-multi-sidebar";
+import starlightLinksValidatorPlugin from "starlight-links-validator";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,7 +23,10 @@ export default defineConfig({
           badge: "Demo",
         },
       ],
-      plugins: [starlightMultiSidebar({ switcherStyle: "dropdown" })],
+      plugins: [
+        starlightMultiSidebar({ switcherStyle: "dropdown" }),
+        starlightLinksValidatorPlugin(),
+      ],
     }),
   ],
 });
