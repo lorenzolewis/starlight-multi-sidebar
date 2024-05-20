@@ -20,14 +20,22 @@
     "@astrojs/starlight": ">=0.16.0",
     "astro": ">=4.0.0"
   },
+  "dependencies": {
+    "astro-integration-kit": "^0.13.3"
+  },
+  "keywords": [
+    "starlight",
+    "plugin",
+    "sidebar",
+    "multi",
+    "multiple",
+    "astro"
+  ],
   "homepage": "https://starlight-multi-sidebar.pages.dev",
   "repository": {
     "type": "git",
     "url": "https://github.com/lorenzolewis/starlight-multi-sidebar.git",
     "directory": "packages/starlight-multi-sidebar"
   },
-  "bugs": "https://github.com/lorenzolewis/starlight-multi-sidebar/issues",
-  "dependencies": {
-    "astro-integration-kit": "^0.13.3"
-  }
+  "bugs": "https://github.com/lorenzolewis/starlight-multi-sidebar/issues"
 }
