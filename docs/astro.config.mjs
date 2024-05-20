@@ -12,8 +12,8 @@ export default defineConfig({
       },
       sidebar: [
         {
-          label: "Guides",
-          autogenerate: { directory: "guides" },
+          label: "Docs",
+          autogenerate: { directory: "docs" },
         },
         {
           label: "Samples",
@@ -21,7 +21,7 @@ export default defineConfig({
           badge: "Demo",
         },
       ],
-      plugins: [starlightMultiSidebar()],
+      plugins: [starlightMultiSidebar({ switcherStyle: "dropdown" })],
     }),
   ],
 });
