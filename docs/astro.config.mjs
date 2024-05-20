@@ -16,8 +16,9 @@ export default defineConfig({
           autogenerate: { directory: "guides" },
         },
         {
-          label: "Reference",
-          autogenerate: { directory: "reference" },
+          label: "Samples",
+          autogenerate: { directory: "sample" },
+          badge: "Demo",
         },
       ],
       plugins: [starlightMultiSidebar()],
