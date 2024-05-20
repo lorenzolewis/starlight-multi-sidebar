@@ -4,7 +4,7 @@ import { AstroError } from "astro/errors";
 import Dropdown from "../components/Dropdown.astro";
 // @ts-expect-error Can't dynamically define this
 import config from "virtual:starlight-multi-sidebar/config";
-import HorizontalScrollList from "../components/HorizontalScrollList.astro";
+import HorizontalList from "../components/HorizontalList.astro";
 
 export type SidebarData = {
   label: string;
@@ -60,6 +60,6 @@ if (!multiSidebarConfig.some(({ isCurrentSidebar }) => isCurrentSidebar)) {
 {config.switcherStyle == "dropdown" &&
   <Dropdown starlightProps={Astro.props} multiSidebarData={multiSidebarConfig} />
 }
-{config.switcherStyle == "horizontalScrollList" &&
-  <HorizontalScrollList starlightProps={Astro.props} multiSidebarData={multiSidebarConfig}/>
+{config.switcherStyle == "horizontalList" &&
+  <HorizontalList starlightProps={Astro.props} multiSidebarData={multiSidebarConfig}/>
 }
