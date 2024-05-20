@@ -1,7 +1,7 @@
 {
   "name": "@lorenzo_lewis/starlight-multi-sidebar",
   "author": "Lorenzo Lewis",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
   "description": "Use multiple sidebars with your Starlight site.",
   "type": "module",
