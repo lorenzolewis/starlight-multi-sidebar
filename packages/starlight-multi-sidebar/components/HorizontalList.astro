@@ -80,26 +80,30 @@ const sidebars = Astro.props.multiSidebarData.map((sidebar) => {
   }
 
   [role="tablist"] {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    justify-content: space-around;
     list-style: none;
-    padding: 0;
-    margin-bottom: var(--sl-nav-pad-y);
+    padding-inline: 0.5rem;
+    padding-block-end: var(--sl-nav-pad-y);
   }
 
   .tab > [role="tab"] {
     display: block;
-    border-radius: 0.25rem;
-    padding-inline: 0.5rem;
-    font-size: var(--sl-text-lg);
-    font-weight: 600;
-    cursor: pointer;
+    text-align: center;
+    font-size: var(--sl-text-base);
+    font-weight: 400;
     text-decoration: none;
-    color: canvastext;
-    min-height: fit-content;
+    color: var(--sl-color-gray-3);
+    border-bottom: 1px solid var(--sl-color-gray-5);
+    padding-inline: 0.2rem;
   }
   .tab [role="tab"][aria-selected="true"] {
-    color: var(--sl-color-text-invert);
-    background-color: var(--sl-color-text-accent);
+    font-weight: 600;
+    border-width: 2px;
+    border-color: var(--sl-color-text-accent);
+    color: var(--sl-color-white);
   }
 </style>
 

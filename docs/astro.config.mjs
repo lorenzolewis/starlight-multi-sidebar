@@ -24,7 +24,7 @@ export default defineConfig({
         },
       ],
       plugins: [
-        starlightMultiSidebar({ switcherStyle: "dropdown" }),
+        starlightMultiSidebar({ switcherStyle: "horizontalList" }),
         starlightLinksValidatorPlugin(),
       ],
     }),
