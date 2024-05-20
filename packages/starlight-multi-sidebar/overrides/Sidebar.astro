@@ -57,9 +57,19 @@ if (!multiSidebarConfig.some(({ isCurrentSidebar }) => isCurrentSidebar)) {
 }
 ---
 
-{config.switcherStyle == "dropdown" &&
-  <Dropdown starlightProps={Astro.props} multiSidebarData={multiSidebarConfig} />
+{
+  config.switcherStyle == "dropdown" && (
+    <Dropdown
+      starlightProps={Astro.props}
+      multiSidebarData={multiSidebarConfig}
+    />
+  )
 }
-{config.switcherStyle == "horizontalList" &&
-  <HorizontalList starlightProps={Astro.props} multiSidebarData={multiSidebarConfig}/>
+{
+  config.switcherStyle == "horizontalList" && (
+    <HorizontalList
+      starlightProps={Astro.props}
+      multiSidebarData={multiSidebarConfig}
+    />
+  )
 }

@@ -12,7 +12,7 @@ export default defineIntegration({
             name,
             imports: {
               "virtual:starlight-multi-sidebar/config": `export default ${JSON.stringify(
-                options
+                options,
               )}`,
             },
           });

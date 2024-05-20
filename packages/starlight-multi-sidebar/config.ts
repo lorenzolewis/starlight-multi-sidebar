@@ -7,7 +7,7 @@ export const configSchema = z
   .default({ switcherStyle: "horizontalList" });
 
 export function validateConfig(
-  userConfig: unknown
+  userConfig: unknown,
 ): StarlightMultiSidebarConfig {
   const config = configSchema.safeParse(userConfig);
 
@@ -22,10 +22,10 @@ export function validateConfig(
             ${Object.entries(errors.fieldErrors)
               .map(
                 ([fieldName, fieldErrors]) =>
-                  `- ${fieldName}: ${JSON.stringify(fieldErrors)}`
+                  `- ${fieldName}: ${JSON.stringify(fieldErrors)}`,
               )
               .join("\n")}
-            `
+            `,
     );
   }
 
