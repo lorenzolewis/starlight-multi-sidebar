@@ -4,6 +4,7 @@ import starlightMultiSidebar from "@lorenzo_lewis/starlight-multi-sidebar";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://starlight-multi-sidebar.pages.dev",
   integrations: [
     starlight({
       title: "🗃️ Starlight Multi-Sidebar",
