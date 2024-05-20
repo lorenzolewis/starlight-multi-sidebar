@@ -20,11 +20,23 @@ interface Props {
     <select>
       {
         Astro.props.multiSidebarData.map(({ isCurrentSidebar, labelEntry }) => (
-          <option
-            value={labelEntry.label}
-            selected={isCurrentSidebar}
-            set:html={labelEntry.label}
-          />
+          <>
+            {labelEntry.type === "link" && (
+              <option
+                value={labelEntry.label}
+                selected={isCurrentSidebar}
+                set:html={labelEntry.label}
+                {...labelEntry.attrs}
+              />
+            )}
+            {labelEntry.type !== "link" && (
+              <option
+                value={labelEntry.label}
+                selected={isCurrentSidebar}
+                set:html={labelEntry.label}
+              />
+            )}
+          </>
         ))
       }
     </select>
