@@ -2,7 +2,13 @@
 import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/Sidebar.astro";
 import { AstroError } from "astro/errors";
-import { Icon } from "@astrojs/starlight/components";
+import Dropdown from "../components/Dropdown.astro";
+
+export type SidebarData = {
+  label: string;
+  isCurrentSidebar: boolean;
+  sidebar: Props;
+};
 
 // Styles and CSS logic derived from https://daisyui.com/components/collapse/
 
@@ -12,7 +18,7 @@ import { Icon } from "@astrojs/starlight/components";
 // 1. Validate the config is set up correctly
 // 2. Create a new derived set of `Astro.props` that only contains one set of sidebar entries
 // 3. Check if the current page being rendered is current page to determine if this sidebar group should be selected
-const multiSidebarConfig: [string, boolean, Props][] = Astro.props.sidebar.map(
+const multiSidebarConfig: Array<SidebarData> = Astro.props.sidebar.map(
   (entry) => {
     if (entry.type !== "group") {
       throw new AstroError(
@@ -36,117 +42,30 @@ const multiSidebarConfig: [string, boolean, Props][] = Astro.props.sidebar.map(
 
     const isCurrentPage = findIfIsCurrent(entry);
 
-    return [
-      entry.label,
-      isCurrentPage,
-      { ...Astro.props, sidebar: [...entry.entries] },
-    ];
+    return {
+      label: entry.label,
+      isCurrentSidebar: isCurrentPage,
+      sidebar: { ...Astro.props, sidebar: [...entry.entries] },
+    };
   }
 );
 
-if (
-  !multiSidebarConfig.some(([_label, isCurrentPage, _config]) => isCurrentPage)
-) {
-  multiSidebarConfig[0][1] = true;
+if (!multiSidebarConfig.some(({ isCurrentSidebar }) => isCurrentSidebar)) {
+  multiSidebarConfig[0].isCurrentSidebar = true;
 }
 ---
 
-<starlight-multi-sidebar-select>
-  <label>
-    <span class="sr-only">
-      {Astro.props.labels["menuButton.accessibleLabel"]}
-    </span>
-    <select>
-      {
-        multiSidebarConfig.map(([label, isCurrentPage]) => (
-          <option value={label} selected={isCurrentPage} set:html={label} />
-        ))
-      }
-    </select>
-    <Icon name="down-caret" class="icon" />
-  </label>
+<Dropdown starlightProps={Astro.props} multiSidebarData={multiSidebarConfig}>
   {
-    multiSidebarConfig.map(([label, isCurrentPage, config]) => (
-      <div hidden={!isCurrentPage} data-starlight-multi-sidebar-label={label}>
-        <Default {...config}>
+    multiSidebarConfig.map(({ label, isCurrentSidebar, sidebar }) => (
+      <div
+        hidden={!isCurrentSidebar}
+        data-starlight-multi-sidebar-label={label}
+      >
+        <Default {...sidebar}>
           <slot />
         </Default>
       </div>
     ))
   }
-</starlight-multi-sidebar-select>
-
-<script>
-  class StarlightMultiSidebarSelect extends HTMLElement {
-    constructor() {
-      super();
-      const dataLabelName = "starlight-multi-sidebar-label";
-      const select = this.querySelector("select");
-      if (select) {
-        select.addEventListener("change", (e) => {
-          if (e.currentTarget instanceof HTMLSelectElement) {
-            const sidebarEntries = this.querySelectorAll(
-              `[data-${dataLabelName}]`
-            );
-            sidebarEntries.forEach((entry) => {
-              if (entry instanceof HTMLDivElement) {
-                entry.hidden = true;
-                if (entry.dataset[dataLabelName] === select.value) {
-                  entry.hidden = false;
-                }
-              }
-            });
-          }
-        });
-      }
-    }
-  }
-  customElements.define(
-    "starlight-multi-sidebar-select",
-    StarlightMultiSidebarSelect
-  );
-</script>
-<style>
-  label {
-    --sl-caret-size: 1.25rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    color: var(--sl-color-gray-1);
-  }
-
-  label:hover {
-    color: var(--sl-color-gray-2);
-  }
-
-  label:hover > select {
-    border-color: var(--sl-color-gray-2);
-  }
-
-  .icon {
-    position: absolute;
-    top: 0;
-    transform: translateY(50%);
-    pointer-events: none;
-    font-size: var(--sl-caret-size);
-    inset-inline-end: 0.5rem;
-  }
-
-  select {
-    box-shadow: var(--sl-shadow-sm);
-    border: 1px solid var(--sl-color-gray-5);
-    padding-block: 0.3rem;
-    margin-bottom: 0.625rem;
-    padding-inline: 0.5rem calc(var(--sl-caret-size) + 0.5rem);
-    width: 100%;
-    text-overflow: ellipsis;
-    color: inherit;
-    cursor: pointer;
-    appearance: none;
-  }
-  option {
-    background-color: var(--sl-color-bg-nav);
-    color: var(--sl-color-gray-1);
-  }
-</style>
+</Dropdown>
