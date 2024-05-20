@@ -1,5 +1,11 @@
 # @lorenzo_lewis/starlight-multi-sidebar
 
+## 0.1.2
+
+### Patch Changes
+
+- 74f3aec: Fix sidebar dropdown on Chromium browsers
+
 ## 0.1.1
 
 ### Patch Changes
