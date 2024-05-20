@@ -36,7 +36,7 @@ export default defineConfig({
           items: [],
         },
       ],
-      plugins: [starlightMultiSidebar({ switcherStyle: "dropdown" })],
+      plugins: [starlightMultiSidebar({ switcherStyle: "horizontalList" })],
     }),
   ],
 });

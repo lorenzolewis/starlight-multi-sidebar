@@ -3,6 +3,7 @@ import type { Props } from "@astrojs/starlight/props";
 import Default from "@astrojs/starlight/components/Sidebar.astro";
 import { AstroError } from "astro/errors";
 import Dropdown from "../components/Dropdown.astro";
+// @ts-expect-error Can't dynamically define this
 import config from "virtual:starlight-multi-sidebar/config";
 
 export type SidebarData = {
@@ -10,8 +11,6 @@ export type SidebarData = {
   isCurrentSidebar: boolean;
   sidebar: Props;
 };
-
-console.log(config.switcherStyle)
 
 // Styles and CSS logic derived from https://daisyui.com/components/collapse/
 
@@ -58,17 +57,20 @@ if (!multiSidebarConfig.some(({ isCurrentSidebar }) => isCurrentSidebar)) {
 }
 ---
 
-<Dropdown starlightProps={Astro.props} multiSidebarData={multiSidebarConfig}>
-  {
-    multiSidebarConfig.map(({ label, isCurrentSidebar, sidebar }) => (
-      <div
-        hidden={!isCurrentSidebar}
-        data-starlight-multi-sidebar-label={label}
-      >
-        <Default {...sidebar}>
-          <slot />
-        </Default>
-      </div>
-    ))
-  }
+{config.switcherStyle == "dropdown" &&
+  <Dropdown starlightProps={Astro.props} multiSidebarData={multiSidebarConfig}>
+    {
+      multiSidebarConfig.map(({ label, isCurrentSidebar, sidebar }) => (
+        <div
+          hidden={!isCurrentSidebar}
+          data-starlight-multi-sidebar-label={label}
+        >
+          <Default {...sidebar}>
+            <slot />
+          </Default>
+        </div>
+      ))
+    }
 </Dropdown>
+}
+{config.switcherStyle == "horizontalList" && <div>Horizontal List </div>}
