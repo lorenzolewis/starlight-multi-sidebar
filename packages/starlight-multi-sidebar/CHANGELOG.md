@@ -30,7 +30,7 @@
   export default defineConfig({
     integrations: [
       starlight({
-        title: "🗃️ Starlight Multi-Sidebar",
+        title: "🗄️ Starlight Multi-Sidebar",
   +     plugins: [starlightMultiSidebar()],
   -     plugins: [starlightMultiSidebar],
       }),
@@ -44,7 +44,7 @@
   export default defineConfig({
     integrations: [
       starlight({
-        title: "🗃️ Starlight Multi-Sidebar",
+        title: "🗄️ Starlight Multi-Sidebar",
         plugins: [
           starlightMultiSidebar({
             switcherStyle: "dropdown",

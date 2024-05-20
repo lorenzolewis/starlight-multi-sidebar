@@ -3,7 +3,7 @@
   "author": "Lorenzo Lewis",
   "version": "0.1.2",
   "license": "MIT",
-  "description": "Use multiple sidebars with your Starlight site.",
+  "description": "Enable multiple sidebars with your Starlight site.",
   "type": "module",
   "exports": {
     ".": "./index.ts",
