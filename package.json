@@ -8,7 +8,7 @@
     "version": "pnpm changeset version && pnpm i --no-frozen-lockfile"
   },
   "dependencies": {
-    "@changesets/cli": "^2.27.2",
+    "@changesets/cli": "^2.27.3",
     "astro": "^4.8.6",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
