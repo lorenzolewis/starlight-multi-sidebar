@@ -1,4 +1,4 @@
-# Starlight Multi-Sidebar
+# 🗄️ Starlight Multi-Sidebar
 
 Have multiple sidebars in your Starlight site!
 
